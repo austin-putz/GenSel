@@ -55,28 +55,21 @@ An example (data_sub2.txt):
 | 1341 | 0.3967 | 3G  |
 | 1343 | 0.2509 | 3G  |
 
-SNP Phenotype Group$
-0001 0.3647 1A <br>
-0002 0.5974 1A <br>
-... <br>
-1340 0.5173 3G <br>
-1341 0.3967 3G <br>
-1343 0.2509 3G <br>
-
 The first column needs to be the ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). 
 
 ### Map File
 
 An example:
 
-SNP ALGP2_chr ALGP2_pos <br>
-AX-116097596 1 5104 <br>
-AX-116696855 1 11173 <br>
-AX-116696856 1 11289 <br>
-... <br>
-AX-116627004 19 144283026 <br>
-AX-116627005 19 144285591 <br>
-AX-116799393 19 144287132 <br>
+| SNP          | ALGP2_chr | ALGP2_pos |
+|--- | --- | --- |
+| AX-116097596 | 1 5104 |
+| AX-116696855 | 1 11173 |
+| AX-116696856 | 1 11289 |
+| ...          | ...| ... |
+| AX-116627004 | 19 | 144283026 |
+| AX-116627005 | 19 | 144285591 |
+| AX-116799393 | 19 | 144287132 |
 
 ### Genotype File
 
