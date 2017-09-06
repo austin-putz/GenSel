@@ -19,13 +19,13 @@ I believe you need this [link](http://hpc.sourceforge.net/). But it's been awhil
 
 You need to create an environmental variable in your bash_profile that sets LD_LIBRARY_PATH. So in your `.bash_profile` (create with `touch` or `vim`). 
 
-Add:
+Add this to your `.bash_profile`:
 ```bash
 LD_LIBRARY_PATH=/home/amputz/bin/GenSel/
 export LD_LIBRARY_PATH
 ```
 
-I also add this line to find the directories. I put in my `~/bin/` folder. 
+I also add this line to my `.bash_profile` to find the directory where I put my binary program in. I put them in my `~/bin/GenSel` folder. 
 ```bash
 export PATH=$HOME/bin/GenSel:$PATH
 ```
@@ -34,7 +34,7 @@ export PATH=$HOME/bin/GenSel:$PATH
 
 Once you have it downloaded, added to your path, and any other software needed installed, you can begin to run GenSel programs. 
 
-You can get the manual [here](https://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf). It has some information in, but as a whole lacks a lot of information to get started. 
+You can get the manual [here](https://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf). It has some information in, but as a whole lacks a lot of information to get started such as file formats and that type of thing. The rest is learning how to tune GenSel to get the correct answers. 
 
 ### File Formats (txt, csv, tsv, etc)
 
@@ -86,6 +86,8 @@ You need to have the same name in the top left (SNP for me). Then the SNP names 
 
 ## GenSel Parameter File
 
+This is a simple space/tab delimited file to add the inputs for GenSel like most of the software ran on the command line. Always name with the .inp extension for GenSel and to find them later. 
+
 These are pretty easy in GenSel. Just use the keywords from the manual. `outputMarkerHeaderName` will indicate the first column name from the map, data, and genotype file. `linkageMap` will tell GenSel what the beginning of the chromosome and position column name is in the map file (see above). 
 
 Example:
@@ -105,6 +107,12 @@ varGenotypic 0.00233
 varResidual 0.00843
 windowBV yes
 ```
+
+## Output
+
+GenSel outputs many different output files. It generally names them with a number behind it, in case you run multiple runs with the same parameter file. So if you title your parameter file ADG.inp (you should always name it with the .inp extension) the output will be ADG.out1, followed by ADG.out2, ADG.out3, etc. This will happen for all of the other output files as well. 
+
+
 
 
 
