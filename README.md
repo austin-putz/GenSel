@@ -71,7 +71,7 @@ An example space delimited (ChrInfoFinal_GenSel.txt):
 | AX-116627005 | 19 | 144285591 |
 | AX-116799393 | 19 | 144287132 |
 
-Do not forget the beginning part of the 2nd and 3rd columns! (I used ALGP2, see parameter file below!!)
+Do not forget the beginning part of the 2nd and 3rd column names! (I used ALGP2, see parameter file below!!)
 
 ### Genotype File
 
@@ -101,27 +101,34 @@ These are pretty easy in GenSel. Just use the keywords from the manual. `outputM
 
 Example (MSE.inp):
 ```
-markerFileName genotypes_imp_GenSel.txt
-phenotypeFileName data_sub2.txt
-outputMarkerHeaderName SNP
-linkageMap ALGP2
-mapOrderFileName ChrInfoFinal_GenSel.txt
-addMapInfoToMarkers yes
-analysisType Bayes
-bayesType BayesC
-probFixed 0
-chainLength 50000
-burnin 10000
-varGenotypic 0.00233
-varResidual 0.00843
-windowBV yes
+# Files
+phenotypeFileName data_sub2.txt               # Phenotype file
+markerFileName genotypes_imp_GenSel.txt       # Genotype file
+mapOrderFileName ChrInfoFinal_GenSel.txt      # Map/Chr file
+
+# column names
+outputMarkerHeaderName SNP                    # Name of first column name in all 3 files
+linkageMap ALGP2                              # Beginning part of map file chromosome and position column names
+
+# analysis
+analysisType Bayes                            # Bayes analysis
+bayesType BayesC                              # BayesC analysis (1 variance)
+probFixed 0                                   # pi = 0 (all markers fit in the model)
+chainLength 50000                             # 50,000 iterations
+burnin 10000                                  # 10,000 samples to discard at start
+varGenotypic 0.00233                          # prior for genetic variance (from GBLUP)
+varResidual 0.00843                           # prior for residual variance (from GBLUP)
+
+# other
+addMapInfoToMarkers yes                       # Not sure...
+windowBV yes                                  # Calculate Window variances (1 Mb by default)
 ```
 
 This analysis will run BayesC with pi = 0 for 50,000 iterations and 10,000 burnin samples. You need to set good starting values for priors for the genetic and residual variances. We like to use the results from BayesC pi = 0 for the other Bayesian analyses. 
 
 ## Output
 
-GenSel outputs many different output files. It generally names them with a number behind it, in case you run multiple runs with the same parameter file. So if you title your parameter file ADG.inp (you should always name it with the .inp extension) the output will be ADG.out1, followed by ADG.out2, ADG.out3, etc. This will happen for all of the other output files as well. 
+GenSel outputs many different output files. It generally names them with a number behind it, in case you run multiple runs with the same parameter file. So if you title your parameter file `ADG.inp` (you should always name it with the .inp extension) the output will be `ADG.out1`, followed by `ADG.out2`, `ADG.out3`, etc. This will happen for all of the other output files as well (`.mrkRes1`, `.mrkRes2`, etc for example).
 
 
 
