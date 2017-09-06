@@ -60,27 +60,27 @@ The first column needs to be the ID matching the genotype file. The 2nd column n
 
 An example:
 
-SNP ALGP2_chr ALGP2_pos
-AX-116097596 1 5104
-AX-116696855 1 11173
-AX-116696856 1 11289
-...
-AX-116627004 19 144283026
-AX-116627005 19 144285591
-AX-116799393 19 144287132
+SNP ALGP2_chr ALGP2_pos <br>
+AX-116097596 1 5104 <br>
+AX-116696855 1 11173 <br>
+AX-116696856 1 11289 <br>
+... <br>
+AX-116627004 19 144283026 <br>
+AX-116627005 19 144285591 <br>
+AX-116799393 19 144287132 <br>
 
 ### Genotype File
 
 An example (genotypes_imp_GenSel.txt):
 
-SNP AX-116097596 AX-116696855 AX-116696856 AX-116696857 ...
-0185 10 10 10 10 ...
-0324 10 10 10 10 ...
-0332 10 10 10 10 ...
-....
-0994 10 10 10 10
-1007 10 10 10 10
-1014 10 10 10 10
+SNP AX-116097596 AX-116696855 AX-116696856 AX-116696857 ... <br>
+0185 10 10 10 10 ... <br>
+0324 10 10 10 10 ... <br>
+0332 10 10 10 10 ... <br>
+.... <br>
+0994 10 10 10 10 <br>
+1007 10 10 10 10 <br>
+1014 10 10 10 10 <br>
 
 You need to have the same name in the top left (SNP for me). Then the SNP names cooresponding to the SNP in the map file as column names. ID's of animals should go in the first column. 
 
