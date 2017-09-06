@@ -42,9 +42,9 @@ It seems like either tab or spaces work fine from what I understand. I'd keep it
 
 ### Data File
 
-IMPORTANT: You need the first word in the phenotype/data file, map file (chromosome info file), and genotype file to all have the *same word* (although it doesn't make sense because for some it's a SNP for the map file and animal ID for the data and genotype files). I name this 'SNP' in my example. 
+> IMPORTANT: You need the first word in the phenotype/data file, map file (chromosome info file), and genotype file to all have the *same word* (although it doesn't make sense because for some it's a SNP for the map file and animal ID for the data and genotype files). I name this 'SNP' in my example. 
 
-An example (data_sub2.txt):
+An example space delimited (data_sub2.txt):
 
 | SNP  | Phenotype | Group$ | 
 |------| -------| ----|
@@ -55,11 +55,11 @@ An example (data_sub2.txt):
 | 1341 | 0.3967 | 3G  |
 | 1343 | 0.2509 | 3G  |
 
-The first column needs to be the ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). 
+The first column needs to be the ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). All columns in the datafile will be used, so don't add extra columns. I will try to write an external bash script or something to handle this I hope. 
 
 ### Map File
 
-An example:
+An example space delimited (ChrInfoFinal_GenSel.txt):
 
 | SNP | ALGP2_chr | ALGP2_pos |
 |--- | --- | --- |
@@ -71,9 +71,13 @@ An example:
 | AX-116627005 | 19 | 144285591 |
 | AX-116799393 | 19 | 144287132 |
 
+Do not forget the beginning part of the 2nd and 3rd columns! (I used ALGP2, see parameter file below!!)
+
 ### Genotype File
 
-An example (genotypes_imp_GenSel.txt):
+The first column name should match the other files (map and data files). The rest of the column names should be the SNP names from the map file. Genotypes need to be -10, 0, 10. Missing genotypes are not allowed (usually 5 or -1), but you can impute with the column average (or allele frequency) and GenSel will ignore them (I've been told, but I would suggest imputing with FImpute or something like this). 
+
+An example space delimited (genotypes_imp_GenSel.txt):
 
 | SNP | AX-116097596 | AX-116696855 | AX-116696856 | AX-116696857 | ... |
 | --- | --- | --- | --- | --- | --- |
@@ -87,13 +91,15 @@ An example (genotypes_imp_GenSel.txt):
 
 You need to have the same name in the top left (SNP for me). Then the SNP names cooresponding to the SNP in the map file as column names. ID's of animals should go in the first column. 
 
+Once you have ran the parameter file once, it will write out a binary file with the genotypes. This will be saved as `old_file_name.txt.newbin`. Use the `.newbin` file after you've read them in once. This will save some time (depending on the size of your file). 
+
 ## GenSel Parameter File
 
-This is a simple space/tab delimited file to add the inputs for GenSel like most of the software ran on the command line. Always name with the .inp extension for GenSel and to find them later. 
+This is a simple space/tab delimited file to add the inputs for GenSel like most of the software ran on the command line. Always name with the .inp extension for GenSel and to find them later. One keyword per line. 
 
 These are pretty easy in GenSel. Just use the keywords from the manual. `outputMarkerHeaderName` will indicate the first column name from the map, data, and genotype file. `linkageMap` will tell GenSel what the beginning of the chromosome and position column name is in the map file (see above). 
 
-Example:
+Example (MSE.inp):
 ```
 markerFileName genotypes_imp_GenSel.txt
 phenotypeFileName data_sub2.txt
@@ -103,13 +109,15 @@ mapOrderFileName ChrInfoFinal_GenSel.txt
 addMapInfoToMarkers yes
 analysisType Bayes
 bayesType BayesC
+probFixed 0
 chainLength 50000
 burnin 10000
-probFixed 0
 varGenotypic 0.00233
 varResidual 0.00843
 windowBV yes
 ```
+
+This analysis will run BayesC with pi = 0 for 50,000 iterations and 10,000 burnin samples. You need to set good starting values for priors for the genetic and residual variances. We like to use the results from BayesC pi = 0 for the other Bayesian analyses. 
 
 ## Output
 
