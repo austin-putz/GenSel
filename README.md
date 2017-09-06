@@ -46,13 +46,13 @@ You need the first word in the phenotype/data file, map file (chromosome info fi
 
 An example (data_sub2.txt):
 
-SNP Phenotype Group$
-0001 0.3647 1A
-0002 0.5974 1A
-...
-1340 0.5173 3G
-1341 0.3967 3G
-1343 0.2509 3G
+SNP Phenotype Group$ <br>
+0001 0.3647 1A <br>
+0002 0.5974 1A <br>
+... <br>
+1340 0.5173 3G <br>
+1341 0.3967 3G <br>
+1343 0.2509 3G <br>
 
 The first column needs to be the ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). 
 
