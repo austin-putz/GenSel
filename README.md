@@ -1,5 +1,6 @@
 # GenSel
-Anything related to GenSel program from Iowa State
+
+Anything related to GenSel program from Iowa State. Writen for genomic selection and GWAS analysis for linear and categorical traits. This program only handles animals with phenotypes **and** genotypes. Please refer to Hao Cheng's Julia package JWAS [here](https://github.com/reworkhow/JWAS.jl) for more information on this program. That package will handle more complex models (maternal, repeatability, etc) and single-step analyses based on their [GSE paper](https://gsejournal.biomedcentral.com/articles/10.1186/1297-9686-46-50). 
 
 ## About
 
