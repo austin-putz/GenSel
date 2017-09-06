@@ -42,11 +42,20 @@ It seems like either tab or spaces work fine from what I understand. I'd keep it
 
 ### Data File
 
-You need the first word in the phenotype/data file, map file (chromosome info file), and genotype file to all have the same word (although it doesn't make sense because for some it's a SNP and others it's an animal ID. I name this 'SNP' or 'ID' or whatever you want. 
+IMPORTANT: You need the first word in the phenotype/data file, map file (chromosome info file), and genotype file to all have the *same word* (although it doesn't make sense because for some it's a SNP for the map file and animal ID for the data and genotype files). I name this 'SNP' in my example. 
 
 An example (data_sub2.txt):
 
-SNP Phenotype Group$ <br>
+| SNP  | Phenotype | Group$ | 
+|------| -------| ----|
+| 0001 | 0.3647 | 1A  |
+| 0002 | 0.5974 | 1A  |
+| ...  | ...    | ... |
+| 1340 | 0.5173 | 3G  |
+| 1341 | 0.3967 | 3G  |
+| 1343 | 0.2509 | 3G  |
+
+SNP Phenotype Group$
 0001 0.3647 1A <br>
 0002 0.5974 1A <br>
 ... <br>
