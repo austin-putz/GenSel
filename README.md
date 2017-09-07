@@ -125,6 +125,8 @@ addMapInfoToMarkers yes                       # Not sure...
 windowBV yes                                  # Calculate Window variances (1 Mb by default)
 ```
 
+![Screenshot of Parameter File](/MSE_inp.png?raw=true "Parameter file example in vim")
+
 This analysis will run BayesC with pi = 0 for 50,000 iterations and 10,000 burnin samples. You need to set good starting values for priors for the genetic and residual variances. We like to use the results from BayesC pi = 0 for the other Bayesian analyses. 
 
 ## Output
