@@ -18,7 +18,7 @@ I believe you need this [link](http://hpc.sourceforge.net/). But it's been awhil
 
 ### For Linux 
 
-You need to create an environmental variable in your bash_profile that sets LD_LIBRARY_PATH. So in your `.bash_profile` (create with `touch` or `vim`). 
+You need to create an environmental variable in your `.bash_profile` that sets LD_LIBRARY_PATH. You will need to modify or create a `.bash_profile` (create with `touch` or `vim`) that goes in your `$HOME` directory. On Linux this should look like `/home/yourname/`. 
 
 Add this to your `.bash_profile`:
 ```bash
@@ -26,7 +26,7 @@ LD_LIBRARY_PATH=/home/amputz/bin/GenSel/
 export LD_LIBRARY_PATH
 ```
 
-I also add this line to my `.bash_profile` to find the directory where I put my binary program in. I put them in my `~/bin/GenSel` folder. 
+I also add this line to my `.bash_profile` to find the directory where I put my binary program. I put them in my `~/bin/GenSel/` folder. 
 ```bash
 export PATH=$HOME/bin/GenSel:$PATH
 ```
@@ -43,7 +43,7 @@ It seems like either tab or spaces work fine from what I understand. I'd keep it
 
 ### Data File
 
-> IMPORTANT: You need the first word in the phenotype/data file, map file (chromosome info file), and genotype file to all have the *same word* (although it doesn't make sense because for some it's a SNP for the map file and animal ID for the data and genotype files). I name this 'SNP' in my example. 
+> IMPORTANT: You need the first word in the data file, map file (chromosome info file), and genotype file to all have the **same word** (although it doesn't make sense because for some it's a SNP for the map file and animal ID for the data and genotype files). I name this 'SNP' in my example. 
 
 An example space delimited (data_sub2.txt):
 
@@ -56,7 +56,7 @@ An example space delimited (data_sub2.txt):
 | 1341 | 0.3967 | 3G  |
 | 1343 | 0.2509 | 3G  |
 
-The first column needs to be the ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). All columns in the datafile will be used, so don't add extra columns. I will try to write an external bash script or something to handle this I hope. 
+The first column needs to be the animal ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). All columns in the datafile will be used, so don't add extra columns. I will try to write an external bash script or something to handle this I hope. 
 
 ### Map File
 
