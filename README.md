@@ -16,15 +16,17 @@ You need two more packages as well to run on a Mac/Linux (don't know about Windo
 
 I believe you need this [link](http://hpc.sourceforge.net/). But it's been awhile so I forget, but you need to download the gfortran I believe. 
 
-### For Linux 
+### For Linux
 
-You need to create an environmental variable in your `.bash_profile` that sets LD_LIBRARY_PATH. You will need to modify or create a `.bash_profile` (create with `touch` or `vim`) that goes in your `$HOME` directory. On Linux this should look like `/home/yourname/`. 
+For Ubuntu, you need to create an environmental variable in your `.bash_profile` that sets LD_LIBRARY_PATH. You will need to modify or create a `.bash_profile` (create with `touch` or `vim`) that goes in your `$HOME` directory. On Linux this should look like `/home/yourname/`. I'm not sure about other flavors of Linux. 
 
-Add this to your `.bash_profile`:
+Depending on where you put the program, ddd this to your `.bash_profile`:
 ```bash
-LD_LIBRARY_PATH=/home/amputz/bin/GenSel/
+LD_LIBRARY_PATH=/home/your_username/bin/GenSel/
 export LD_LIBRARY_PATH
 ```
+
+You will need to adjust the directory based on where you leave the binaries. I like to keep all mine within my `$HOME/bin/` folder. 
 
 I also add this line to my `.bash_profile` to find the directory where I put my binary program. I put them in my `~/bin/GenSel/` folder. 
 ```bash
