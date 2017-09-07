@@ -139,6 +139,19 @@ This analysis will run BayesC with pi = 0 for 50,000 iterations and 10,000 burni
 
 GenSel outputs many different output files. It generally names them with a number behind it, in case you run multiple runs with the same parameter file. So if you title your parameter file `ADG.inp` (you should always name it with the .inp extension) the output will be `ADG.out1`, followed by `ADG.out2`, `ADG.out3`, etc. This will happen for all of the other output files as well (`.mrkRes1`, `.mrkRes2`, etc for example).
 
+Main output files:
+* base.cgrResn
+* base.cgrResSampelsn
+* base.ghatRELn
+* base.mrkResn
+* base.outn
+* base.outSamplesBINn
+* base.winQTLn
+* base.winVarn
+
+Where 'n' refers to the analysis number. They don't overwrite files like other programs, so they just keep numbering files 1,2,...,n. 
+
+
 
 
 
