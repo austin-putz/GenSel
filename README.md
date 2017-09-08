@@ -78,7 +78,9 @@ An example space delimited (ChrInfoFinal_GenSel.txt):
 
 ![Screenshot of Map File](/Screenshots/MSE_map.png?raw=true "Map file example")
 
-Do not forget the beginning part of the 2nd and 3rd column names! (I used ALGP2, see parameter file below!!)
+> IMPORTANT: Remember to add the same beginning to the 2nd and 3rd column names (Chromosome and Position). (I used ALGP2, see parameter file below to see how to specify this)
+
+These don't have to be in order. You should be able to include more SNP than you have in your genotype file. GenSel will only use those it finds in the genotype file. This is nice if you have different subsets. 
 
 ### Genotype File
 
