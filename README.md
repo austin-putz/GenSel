@@ -58,7 +58,7 @@ An example space delimited (data_sub2.txt):
 | 1341 | 0.3967 | 3G  |
 | 1343 | 0.2509 | 3G  |
 
-![Screenshot of Data File](/MSE_data.png?raw=true "Data file example")
+![Screenshot of Data File](/Screenshots/MSE_data.png?raw=true "Data file example")
 
 The first column needs to be the animal ID matching the genotype file. The 2nd column needs to be the phenotype of interest (any column name). The `$` after Group tells GenSel that it's group/class/factor/etc not a covariate (linear). All columns in the datafile will be used, so don't add extra columns. I will try to write an external bash script or something to handle this I hope. 
 
@@ -76,7 +76,7 @@ An example space delimited (ChrInfoFinal_GenSel.txt):
 | AX-116627005 | 19 | 144285591 |
 | AX-116799393 | 19 | 144287132 |
 
-![Screenshot of Map File](/MSE_map.png?raw=true "Map file example")
+![Screenshot of Map File](/Screenshots/MSE_map.png?raw=true "Map file example")
 
 Do not forget the beginning part of the 2nd and 3rd column names! (I used ALGP2, see parameter file below!!)
 
@@ -96,7 +96,7 @@ An example space delimited (genotypes_imp_GenSel.txt):
 | 1007 | 10 | 10 | 10 | 10 | ... |
 | 1014 | 10 | 10 | 10 | 10 | ... |
 
-![Screenshot of Genotype File](/MSE_genotypes.png?raw=true "Genotypes file example")
+![Screenshot of Genotype File](/Screenshots/MSE_genotypes.png?raw=true "Genotypes file example")
 
 You need to have the same name in the top left (SNP for me). Then the SNP names cooresponding to the SNP in the map file as column names. ID's of animals should go in the first column. 
 
@@ -133,7 +133,7 @@ addMapInfoToMarkers yes                       # Not sure...
 windowBV yes                                  # Calculate Window variances (1 Mb by default)
 ```
 
-![Screenshot of Parameter File](/MSE_inp.png?raw=true "Parameter file example in vim")
+![Screenshot of Parameter File](/Screenshots/MSE_inp.png?raw=true "Parameter file example in vim")
 
 This analysis will run BayesC with pi = 0 for 50,000 iterations and 10,000 burnin samples. You need to set good starting values for priors for the genetic and residual variances. We like to use the results from BayesC pi = 0 for the other Bayesian analyses. 
 
