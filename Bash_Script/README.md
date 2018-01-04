@@ -1,8 +1,12 @@
 # run_gensel.sh Bash Script
 
-This directory has informaiton on how to run my script if you 
+This directory has information on how to run my script if you 
 ever need to run 100 traits at a time back to back. Or you can split 
 it up into a few directories and run them simultaneously. 
+
+It will loop one-by-one and place them in the output folder you
+specify. Each trait will go into it's own folder. i.e. 
+Output/Trait1/
 
 ## Steps
 
