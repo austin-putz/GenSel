@@ -72,7 +72,7 @@ You should get the following if you run it without any options.
 ./run_gensel.sh -d Data -o Output -f -i template.inp -t traits.txt -ext dat
  ```
 
-
+There is some documentation within the script. 
 
 
 
