@@ -37,7 +37,7 @@ export PATH=$HOME/bin/GenSel:$PATH
 
 Once you have it downloaded, added to your path, and any other software needed installed, you can begin to run GenSel programs. 
 
-You can get the manual [here](https://www.biomedcentral.com/content/supplementary/1471-2105-12-186-s1.pdf). It has some information in, but as a whole lacks a lot of information to get started such as file formats and that type of thing. The rest is learning how to tune GenSel to get the correct answers. 
+You can get the manual [here](https://static-content.springer.com/esm/art%3A10.1186%2F1471-2105-12-186/MediaObjects/12859_2010_4655_MOESM1_ESM.PDF). It has some information in, but as a whole lacks a lot of information to get started such as file formats and that type of thing. The rest is learning how to tune GenSel to get the correct answers. 
 
 ### File Formats (txt, csv, tsv, etc)
 
