@@ -1,8 +1,12 @@
 # run_gensel.sh Bash Script
 
-This directory has informaiton on how to run my script if you 
+This directory has information on how to run my script if you 
 ever need to run 100 traits at a time back to back. Or you can split 
 it up into a few directories and run them simultaneously. 
+
+It will loop one-by-one and place them in the output folder you
+specify. Each trait will go into it's own folder. i.e. 
+Output/Trait1/
 
 ## Steps
 
@@ -46,18 +50,29 @@ Write a template parameter file with keywords to replace.
 * a_var
 * e_var
 
+![Screenshot of Parameter File](/Bash_Script/Screenshots/template.png?raw=true "Parameter file example in vim")
+
 ### 3 - Create a file with trait names and starting values
 
 Create a space delimited file with names of traits you want to 
 run and starting values. The last column is to say yes/no if it is 
 categorical or not. 
 
+![Screenshot of Traits File](/Bash_Script/Screenshots/traits.png?raw=true "Traits file example")
+
 ### 4 - Run the script first by testing
 
 You should get the following if you run it without any options. 
 
+![Screenshot of Error](/Bash_Script/Screenshots/error.png?raw=true "Message example")
 
+ Otherwise, run with the following:
+ 
+ ```bash
+./run_gensel.sh -d Data -o Output -f -i template.inp -t traits.txt -ext dat
+ ```
 
+There is some documentation within the script. 
 
 
 
