@@ -160,7 +160,7 @@ Where 'n' refers to the analysis number. They don't overwrite files like other p
 
 # Tips and Tricks
 
-1. Remember to convert the file to uniq if did the data or genotyping on Windows. Use `dos2unix` on the Linux command line if you have it available or find another way to remove the ^M from Windows. 
+1. Remember to convert the file to unix if did the data or genotyping on Windows. Use `dos2unix` on the Linux command line if you have it available or find another way to remove the ^M from Windows. 
 
 
 
