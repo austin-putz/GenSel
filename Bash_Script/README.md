@@ -15,6 +15,8 @@ Output/Trait1/
 In R (or your favorite program), loop and right out your datasets. 
 
 ```R
+save_dir_gensel <- "~/MY/FAV/DIRECTORY/"
+
 # list of files
   for (i in c("AMIRres", "CMIRres")){
    
