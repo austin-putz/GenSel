@@ -20,13 +20,13 @@ I believe you need this [link](http://hpc.sourceforge.net/). But it's been awhil
 
 For Ubuntu, you need to create an environmental variable in your `.bash_profile` that sets LD_LIBRARY_PATH. You will need to modify or create a `.bash_profile` (create with `touch` or `vim`) that goes in your `$HOME` directory. On Linux this should look like `/home/yourname/`. I'm not sure about other flavors of Linux. 
 
-Depending on where you put the program, ddd this to your `.bash_profile`:
+Depending on where you put the program, add this to your `.bash_profile`:
 ```bash
-LD_LIBRARY_PATH=/home/your_username/bin/GenSel/
+LD_LIBRARY_PATH=$HOME/bin/GenSel/
 export LD_LIBRARY_PATH
 ```
 
-You will need to adjust the directory based on where you leave the binaries. I like to keep all mine within my `$HOME/bin/` folder. 
+You will need to adjust the directory based on where you leave the binaries. I like to keep all mine within my `$HOME/bin/` directory (folder) or within a subfolder of my `$HOME/bin/` directory. 
 
 I also add this line to my `.bash_profile` to find the directory where I put my binary program. I put them in my `~/bin/GenSel/` folder. 
 ```bash
@@ -80,7 +80,7 @@ An example space delimited (ChrInfoFinal_GenSel.txt):
 
 > IMPORTANT: Remember to add the same beginning to the 2nd and 3rd column names (Chromosome and Position). (I used ALGP2, see parameter file below to see how to specify this)
 
-These don't have to be in order. You should be able to include more SNP than you have in your genotype file. GenSel will only use those it finds in the genotype file. This is nice if you have different subsets. 
+I don't think the SNPs have to be in order. You should be able to include more SNP than you have in your genotype file. GenSel will only use those it finds in the genotype file. This is nice if you have different subsets. The SNP will be specified as the column header. 
 
 ### Genotype File
 
