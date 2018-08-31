@@ -5,8 +5,8 @@
 #==============================================================================#
 
 # Author: Austin Putz (putz dot austin at gmail dot com)
-# Created: Dec 29, 2017
-# Modified: Jan 3, 2018
+# Created:  Dec 29, 2017
+# Modified: August 31, 2018
 # License: GPLv2
 
 #==============================================================================#
@@ -18,6 +18,7 @@
 # options are given to change it. 
 
 #------------------------------------------------------------------------------#
+#
 # SETUP:
 # 
 # 1) Place all your datafiles in a directory within your working directory
@@ -38,18 +39,24 @@
 #----------------------------------------#
 # Examples of traits file (-t option)
 # Format:
-# Trait a_var e_var is_cat (is categorical? yes/no)
+# SPACE Delimited
+# NO HEADER
+# column 1 = Trait, column 2 = a_var, column 3 = e_var, column 4 = is_cat (is categorical? yes/no)
 #----------------------------------------#
+#
 # Mortality 0.05 0.4 yes
 # ADG 0.1 0.9 no
 # Backfat 0.5 0.5 no
 # Loindepth 0.4 0.6 no
 # FeedIntake 0.5 0.5 no
 # etc...
+# 
 #----------------------------------------#
 #
 # 4) I like to add the script to my ~/bin folder to have access 
 # 	from anywhere by adding the PATH to my .bash_profile
+# 
+# export PATH=$HOME/bin:$PATH
 # 
 #------------------------------------------------------------------------------#
 
@@ -66,6 +73,7 @@ cd $CUR_DIR
 #------------------------------------------------------------------------------#
 # OPTIONS:
 #
+#   -n          = name of gensel program (will try to find the path if it exists)
 # 	-d			= data file directory (named trait1.dat, trait2.dat, etc)
 # 	-o 			= output directory (will create one directory per trait)
 # 	-f 			= force delete output directory
@@ -82,9 +90,13 @@ cd $CUR_DIR
 #----------------------------------------#
 # RUN EXAMPLE:
 #
-# run_gensel.sh -d Data -o Output -t traits.txt -f -i template.inp
+# run_gensel.sh -n gensel -d Data -o Output -t traits.txt -f -i template.inp
 #
 #----------------------------------------#
+
+
+
+
 
 #==============================================================================#
 # Set Options
@@ -93,14 +105,16 @@ cd $CUR_DIR
 # set options
 delete=0
 ext="dat"
+GENSEL="gensel"
 
 # loop through positional variables to set variables
 if [ -z $1 ]; then    # if there are no variables given, stop and warn
 
 	# print usage to STDERR
-	printf "\nUsage: run_gensel.sh -d [data sets directory] -o [output directory] -t [traits file with starting values] -i [template .inp file] -f -ext [extension on datasets]\n" 1>&2
+	printf "\nUsage: run_gensel.sh -n [name of your gensel program] -d [data sets directory] -o [output directory] -t [traits file with starting values] -i [template .inp file] -f -ext [extension on datasets]\n" 1>&2
 
 	# print options to STDERR
+	printf "\n\t-n	= Name of YOUR GenSel program" 1>&2
 	printf "\n\t-d	= Directory name with datasets present (name them trait1.dat, trait2.dat, etc..)" 1>&2
 	printf "\n\t-o 	= Directory for output" 1>&2
 	printf "\n\t-f 	= Force delete output directory" 1>&2
@@ -115,6 +129,9 @@ else
 		case $1 in
 
 		# set variables
+		-n)		shift
+				GENSEL=$1
+				;;
 		-d) 	shift
 				DATA_DIR=$1      # set data directory to find data files
 				;;
@@ -137,6 +154,10 @@ else
 	done
 fi
 
+
+
+
+
 #==============================================================================#
 # Print checks
 #==============================================================================#
@@ -144,6 +165,28 @@ fi
 echo -e "\n--------------------------------------------------------------------------------"
 echo "-----  Checking Options -----"
 echo "--------------------------------------------------------------------------------"
+
+#----------------------------------------#
+# Check gensel executable
+#----------------------------------------#
+
+printf "\n----- GENSEL EXECUTABLE -----\n"
+
+PATH_GENSEL=`which $GENSEL`
+
+if [[ -z $GENSEL ]]; then
+
+	# print error
+	printf "\n\tCannot find your GenSel Program (specify with -n) or change your PATH variable to find it.\n" >&2
+	exit 1
+
+else
+
+	# print gensel location
+	printf "\n\tGenSel Program Location: %s\n" $PATH_GENSEL
+
+fi
+
 
 #----------------------------------------#
 # Check Current directory
@@ -267,6 +310,10 @@ printf "\n----- EXTENSION ON DATASETS -----\n"
 	# print file 
 	printf "\n\tExtension on datasets: %s\n" $ext
 
+
+
+
+
 #==============================================================================#
 # Set new variables
 #==============================================================================#
@@ -277,11 +324,20 @@ printf "\n----- ADDING VARIABLES -----\n"
 n_traits=`awk ' END { print NR }' ${traits}`
 printf "\n\tNumber of traits: %s\n" $n_traits
 
+
+
+
+
 #==============================================================================#
 # Create Output direcotry
 #==============================================================================#
 
 mkdir $OUTPUT_DIR
+
+
+
+
+
 
 #==============================================================================#
 # Run program
@@ -299,7 +355,7 @@ for i in $(seq 1 $n_traits); do
 	cur_trait=`awk ' { print $1 }' $traits | awk ' NR=='""$i""' '`
 	cur_a_var=`awk ' { print $2 }' $traits | awk ' NR=='""$i""' '`
 	cur_e_var=`awk ' { print $3 }' $traits | awk ' NR=='""$i""' '`
-	cur_type=`awk ' { print $4 }' $traits | awk ' NR=='""$i""' '`
+	cur_type=`awk ' { print $4 }' $traits  | awk ' NR=='""$i""' '`
 
 	printf "\n\n\n------------------------------ $cur_trait ------------------------------\n\n"
 
@@ -321,11 +377,16 @@ for i in $(seq 1 $n_traits); do
 	printf "\n\tReplacing keywords in template file\n\n"
 
 	# change name in template.inp file
-	sed 's/TRAIT/'""$cur_trait""'/g' $template > ${cur_trait}.inp
-	sed -i 's/EXT/'""$ext""'/g'                  ${cur_trait}.inp
-	sed -i 's/a_var/'""$cur_a_var""'/g'          ${cur_trait}.inp
-	sed -i 's/e_var/'""$cur_e_var""'/g'          ${cur_trait}.inp
-	sed -i 's/CAT/'""$cur_type""'/g'             ${cur_trait}.inp
+	sed 's/TRAIT/'""$cur_trait""'/g'  $template            > ${cur_trait}.inp
+	sed 's/EXT/'""$ext""'/g'          ${cur_trait}.inp     > ${cur_trait}.inpabc2
+	sed 's/a_var/'""$cur_a_var""'/g'  ${cur_trait}.inpabc2 > ${cur_trait}.inpabc3
+	sed 's/e_var/'""$cur_e_var""'/g'  ${cur_trait}.inpabc3 > ${cur_trait}.inpabc4
+	sed 's/CAT/'""$cur_type""'/g'     ${cur_trait}.inpabc4 > ${cur_trait}.inp
+
+	# remove intermediate inp files
+	rm -f ${cur_trait}.inpabc2
+	rm -f ${cur_trait}.inpabc3
+	rm -f ${cur_trait}.inpabc4
 
 	# describe data set
 	nrows=`awk ' END { print NR } ' ${cur_trait}.${ext}`
@@ -339,7 +400,8 @@ for i in $(seq 1 $n_traits); do
 	printf "\n\tSTARTING GENSEL!!!\n\n\n"
 
 	# run gensel
-	gensel ${cur_trait}.inp
+	#gensel ${cur_trait}.inp
+	${GENSEL} ${cur_trait}.inp
 
 	# move files that are newer than checkmark.txt to correct directory
 	mv $cur_trait.* ${OUTPUT_DIR}/$cur_trait/
@@ -351,22 +413,6 @@ for i in $(seq 1 $n_traits); do
 	cd $CUR_DIR
 
 done
-
-
-#echo "DONE TO HERE"
-#exit 1
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
