@@ -52,7 +52,7 @@ Write a template parameter file with keywords to replace.
 
 ![Screenshot of Parameter File](/Bash_Script/Screenshots/template.png?raw=true "Parameter file example in vim")
 
-### 3 - Create a file with trait names and starting values
+### 3 - Create a file with trait names and starting values (1=TraitName 2=additive 3=residual 4=categorical)
 
 Create a space delimited file with names of traits you want to 
 run and starting values. The last column is to say yes/no if it is 
@@ -69,10 +69,11 @@ You should get the following if you run it without any options.
  Otherwise, run with the following:
  
  ```bash
-./run_gensel.sh -d Data -o Output -f -i template.inp -t traits.txt -ext dat
+./run_gensel.sh -n gensel -d Data -o Output -f -i template.inp -t traits.txt -ext dat
  ```
 
 There is some documentation within the script. 
 
+UPDATE: I added the `-n` option so you can specify the name of your program without changing the shell script. And I made it compatible with Macs. I was using the `-i` option with `sed` and it didn't work on Mac. 
 
 
