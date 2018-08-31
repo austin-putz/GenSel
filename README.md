@@ -2,6 +2,8 @@
 
 Anything related to GenSel program from Iowa State. Writen for genomic selection and GWAS analysis for linear and categorical traits. This program only handles animals with phenotypes **and** genotypes. Please refer to Hao Cheng's Julia package JWAS [here](https://github.com/reworkhow/JWAS.jl) for more information on this program. That package will handle more complex models (maternal, repeatability, etc) and single-step analyses based on their [GSE paper](https://gsejournal.biomedcentral.com/articles/10.1186/1297-9686-46-50). 
 
+If you were wondering how to run gensel, I hope this helps. Here is an example of my run with gensel and how I set up a shell script to run all my traits back-to-back. I currently have around 500 columns in my dataset. Doing all these GWAS analyses would be quite difficult so shell scripting comes in handy (as always). 
+
 ## About
 
 GenSel was created and written at Iowa State University by Rohan Fernando ([here](https://www.linkedin.com/in/rohan-fernando-b2123520/)) and Dorian Garrick (now at Massey University in New Zealand, see [here](https://www.linkedin.com/in/dorian-garrick-7a248667/)). 
